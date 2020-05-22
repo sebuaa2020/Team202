@@ -6,6 +6,7 @@ import sqlite3
 database_name = "team202_ROS_database.db"
 
 if __name__ == "__main__":
+    
     db = sqlite3.connect(database=database_name)
 
     cur = db.cursor()
