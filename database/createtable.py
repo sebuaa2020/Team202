@@ -2,11 +2,10 @@
 # -*- coding: UTF-8 -*-
 
 import sqlite3
-
-database_name = "team202_ROS_database.db"
+import dbmessage
 
 if __name__ == "__main__":
-    
+    database_name = dbmessage.SQL_oper.database_name
     db = sqlite3.connect(database=database_name)
 
     cur = db.cursor()
@@ -54,7 +53,6 @@ if __name__ == "__main__":
             CREATE TABLE CATCHING_TABLE
             (
                 ID INT NOT NULL,
-                LABEL VARCHAR(99) NOT NULL,
                 CREATE_TIME TIMESTAMP,
                 POS_X FLOAT,
                 POS_Y FLOAT,
