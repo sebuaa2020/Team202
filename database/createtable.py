@@ -35,7 +35,6 @@ if __name__ == "__main__":
             (
                 ID INT NOT NULL,
                 PLACE_NAME VARCHAR(99),
-                CREATE_TIME TIMESTAMP,
                 POS_X FLOAT(24),
                 POS_Y FLOAT(24),
                 INFO TEXT
@@ -53,7 +52,7 @@ if __name__ == "__main__":
             CREATE TABLE CATCHING_TABLE
             (
                 ID INT NOT NULL,
-                CREATE_TIME TIMESTAMP,
+                LABEL VARCHAR(99),
                 POS_X FLOAT,
                 POS_Y FLOAT,
                 POS_Z FLOAT,
