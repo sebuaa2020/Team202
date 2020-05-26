@@ -2,9 +2,10 @@ from dbmessage import md5, User
 
 if __name__ == "__main__":
     res = User.query("admin")
-    user = User("admin", md5("123456"))
-    user.insert()
-    User.update(User("admin", md5("123456"), 2))
+    if res == None:
+        user = User("admin", md5("123456"))
+        user.insert()
+    User.update(User("admin", md5("T202"), 1))
     res = User.query("admin")
     assert res != None
     print(res)
