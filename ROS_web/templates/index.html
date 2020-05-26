@@ -19,196 +19,324 @@
 </head>
 
 <body>
-<div class="content-wrapper">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center">
-                    <button type="button" data-toggle="modal" data-target="#basicMove"
-                            class="btn btn-inverse-primary btn-fw" aria-hidden="true">基本移动模式
-                    </button>
-                    <!-- Modal-->
-                    <div id="basicMove" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
-                         aria-labelledby="exampleModalLabel"
-                         aria-hidden="true" class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 id="exampleModalLabel" class="modal-title">基本移动模式</h4>
-                                    {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                    {#                                            aria-hidden="true">×</span></button>#}
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+{#                <a class="navbar-brand brand-logo" href="index.html"><img src="../static/images/logo.svg"#}
+{#                                                                          alt="logo"/></a>#}
+{#                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../static/images/logo-mini.svg"#}
+{#                                                                               alt="logo"/></a>#}
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-sort-variant"></span>
+                </button>
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown mr-4">
+                    <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
+                       id="notificationDropdown" href="#" data-toggle="dropdown">
+                        <i class="mdi mdi-bell mx-0"></i>
+                        <span class="count"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                         aria-labelledby="notificationDropdown">
+                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-success">
+                                    <i class="mdi mdi-information mx-0"></i>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                onclick="goForward()">
-                                            前进
-                                        </button>
-                                    </div>
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                onclick="goLeft()">
-                                            左转
-                                        </button>
-                                        <button type="button" class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                onclick="goRight()">
-                                            右转
-                                        </button>
-                                    </div>
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                onclick="goBackward()">
-                                            后退
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">Application Error</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Just now
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-warning">
+                                    <i class="mdi mdi-settings mx-0"></i>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-dismiss="modal" class="btn btn-primary" onclick="exit1()">Exit</button>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">Settings</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Private message
+                                </p>
+                            </div>
+                        </a>
+                        <a class="dropdown-item">
+                            <div class="item-thumbnail">
+                                <div class="item-icon bg-info">
+                                    <i class="mdi mdi-account-box mx-0"></i>
                                 </div>
+                            </div>
+                            <div class="item-content">
+                                <h6 class="font-weight-normal">New user registration</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    2 days ago
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">首页</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/help">
+                        <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                        <span class="menu-title">帮助文档</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about_us">
+                        <i class="mdi mdi-emoticon menu-icon"></i>
+                        <span class="menu-title">关于我们</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-inverse-secondary btn-fw">建立地图</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center">
-                    <button type="button" data-toggle="modal" data-target="#navi" class="btn btn-inverse-info btn-fw">
-                        导航模式
-                    </button>
-                    <!-- Modal-->
-                    <div id="navi" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true"
-                         class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 id="exampleModalLabel" class="modal-title">导航模式</h4>
-                                    {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                    {#                                            aria-hidden="true">×</span></button>#}
-                                </div>
-                                <div class="modal-body">
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-info btn-icon-text btn-rounded">
-                                            选择目的地
-                                        </button>
-                                    </div>
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-info btn-icon-text btn-rounded" onclick="startNavi()">
-                                            开始导航
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-dismiss="modal" class="btn btn-info" onclick="exit3()">Exit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center">
-                    <button type="button" data-toggle="modal" data-target="#follow"
-                            class="btn btn-inverse-success btn-fw">跟随移动模式
-                    </button>
-                    <!-- Modal-->
-                    <div id="follow" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true"
-                         class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 id="exampleModalLabel" class="modal-title">跟随移动模式</h4>
-                                    {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                    {#                                            aria-hidden="true">×</span></button>#}
-                                </div>
-                                <div class="modal-body">
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-success btn-icon-text btn-rounded"
-                                                onclick="startFollow()">
-                                            开始跟随
-                                        </button>
-                                    </div>
-                                    <div class="template-demo text-center">
-                                        <button type="button" class="btn btn-inverse-success btn-icon-text btn-rounded"
-                                                onclick="stopFollow()">
-                                            结束跟随
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-dismiss="modal" class="btn btn-success" onclick="exit2()">Exit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center">
-                    <button type="button" data-toggle="modal" data-target="#grab"
-                            class="btn btn-inverse-warning btn-fw">抓取模式
-                    </button>
-                    <!-- Modal-->
-                    <div id="grab" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true"
-                         class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 id="exampleModalLabel" class="modal-title">抓取模式</h4>
-                                    {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                    {#                                            aria-hidden="true">×</span></button>#}
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label>请输入目的地</label>
-                                            <input type="text" placeholder="e.g. 桌子" class="form-control" id="place">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <button type="button" data-toggle="modal" data-target="#basicMove"
+                                        class="btn btn-inverse-primary btn-fw" aria-hidden="true">基本移动模式
+                                </button>
+                                <!-- Modal-->
+                                <div id="basicMove" tabindex="-1" role="dialog" data-backdrop="static"
+                                     data-keyboard="false"
+                                     aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true" class="modal fade text-left">
+                                    <div role="document" class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 id="exampleModalLabel" class="modal-title">基本移动模式</h4>
+                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
+                                                {#                                            aria-hidden="true">×</span></button>#}
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goForward()">
+                                                        前进
+                                                    </button>
+                                                </div>
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goLeft()">
+                                                        左转
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goRight()">
+                                                        右转
+                                                    </button>
+                                                </div>
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goBackward()">
+                                                        后退
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-primary"
+                                                        onclick="exit1()">Exit
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>请输入物品名称</label>
-                                            <input type="text" placeholder="e.g. 水瓶" class="form-control" id="object">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-inverse-warning btn-icon-text btn-rounded"
-                                                    onclick="grabChoice()">开始抓取
-                                            </button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-dismiss="modal" class="btn btn-warning" onclick="exit4()">Exit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <button type="button" data-toggle="modal" data-target="#navi"
+                                        class="btn btn-inverse-info btn-fw">
+                                    导航模式
+                                </button>
+                                <!-- Modal-->
+                                <div id="navi" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                     class="modal fade text-left">
+                                    <div role="document" class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 id="exampleModalLabel" class="modal-title">导航模式</h4>
+                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
+                                                {#                                            aria-hidden="true">×</span></button>#}
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-info btn-icon-text btn-rounded">
+                                                        选择目的地
+                                                    </button>
+                                                </div>
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-info btn-icon-text btn-rounded"
+                                                            onclick="startNavi()">
+                                                        开始导航
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-info"
+                                                        onclick="exit3()">Exit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <button type="button" data-toggle="modal" data-target="#follow"
+                                        class="btn btn-inverse-success btn-fw">跟随移动模式
+                                </button>
+                                <!-- Modal-->
+                                <div id="follow" tabindex="-1" role="dialog" data-backdrop="static"
+                                     data-keyboard="false"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                     class="modal fade text-left">
+                                    <div role="document" class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 id="exampleModalLabel" class="modal-title">跟随移动模式</h4>
+                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
+                                                {#                                            aria-hidden="true">×</span></button>#}
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="startFollow()">
+                                                        开始跟随
+                                                    </button>
+                                                </div>
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="stopFollow()">
+                                                        结束跟随
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-success"
+                                                        onclick="exit2()">Exit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <button type="button" data-toggle="modal" data-target="#grab"
+                                        class="btn btn-inverse-warning btn-fw">抓取模式
+                                </button>
+                                <!-- Modal-->
+                                <div id="grab" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                     class="modal fade text-left">
+                                    <div role="document" class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 id="exampleModalLabel" class="modal-title">抓取模式</h4>
+                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
+                                                {#                                            aria-hidden="true">×</span></button>#}
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label>请输入目的地</label>
+                                                        <input type="text" placeholder="e.g. 桌子" class="form-control"
+                                                               id="place">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>请输入物品名称</label>
+                                                        <input type="text" placeholder="e.g. 水瓶" class="form-control"
+                                                               id="object">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="button"
+                                                                class="btn btn-inverse-warning btn-icon-text btn-rounded"
+                                                                onclick="grabChoice()">开始抓取
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-warning"
+                                                        onclick="exit4()">Exit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- content-wrapper ends -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center">
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Design by 护肝队 <i
+                        class="mdi mdi-heart text-danger"></i></span>
+                </div>
+            </footer>
+            <!-- partial -->
         </div>
-
+        <!-- main-panel ends -->
     </div>
+    <!-- page-body-wrapper ends -->
 </div>
-<!-- content-wrapper ends -->
-<!-- partial:../../partials/_footer.html -->
-<footer class="footer">
-    <div class="d-sm-flex justify-content-center">
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Design by 护肝队 <i
-                class="mdi mdi-heart text-danger"></i></span>
-    </div>
-</footer>
-<!-- partial -->
-
-<!-- main-panel ends -->
-
-<!-- page-body-wrapper ends -->
-
 <!-- container-scroller -->
 
 <script type="text/javascript">
@@ -222,7 +350,7 @@
             type: "get",
             data: data,
             success: function (data) {
-                alert("forward");
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -240,7 +368,7 @@
             type: "get",
             data: data,
             success: function (data) {
-                alert("backward");
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -258,7 +386,7 @@
             type: "get",
             data: data,
             success: function (data) {
-                alert("left");
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -276,7 +404,7 @@
             type: "get",
             data: data,
             success: function (data) {
-                alert("right");
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -344,7 +472,7 @@
         const data = {
             'pattern': '4',
             'place': place,
-            'object':object
+            'object': object
         };
         $.ajax({
             url: "{{ url_for('index') }}",
