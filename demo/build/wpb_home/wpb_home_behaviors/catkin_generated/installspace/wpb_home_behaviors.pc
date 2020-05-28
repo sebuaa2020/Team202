@@ -1,0 +1,8 @@
+prefix=/home/yue/demo/install
+
+Name: wpb_home_behaviors
+Description: Description of wpb_home_behaviors
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_runtime

@@ -1,0 +1,8 @@
+prefix=/home/yue/demo/devel
+
+Name: wpb_home_tutorials
+Description: Description of wpb_home_tutorials
+Version: 0.1.0
+Cflags: -I/home/yue/demo/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

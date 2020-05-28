@@ -1,0 +1,8 @@
+prefix=/home/yue/demo/devel
+
+Name: wpbh_local_planner
+Description: Description of wpbh_local_planner
+Version: 0.0.1
+Cflags: -I/home/yue/demo/src/wpb_home/wpbh_local_planner/include
+Libs: -L${prefix}/lib -lwpbh_local_planner
+Requires: base_local_planner costmap_2d geometry_msgs nav_core nav_msgs pluginlib roscpp std_msgs tf tf_conversions

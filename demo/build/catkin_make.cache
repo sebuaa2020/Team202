@@ -1,0 +1,2 @@
+wpb_home/wpb_home_behaviors:wpb_home/wpb_home_bringup:wpb_home/wpb_home_remote:wpb_home/wpb_home_tutorials:wpb_home/wpbh_local_planner:wpr_simulation
+-DCATKIN_DEVEL_PREFIX=/home/yue/demo/devel -DCMAKE_INSTALL_PREFIX=/home/yue/demo/install -G Unix Makefiles
