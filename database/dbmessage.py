@@ -188,7 +188,7 @@ class CatchingObject(SQL_oper):
 
     def insert(self):
         table = CatchingObject.TABLE_NAME
-        attributes = CatchingObject.ATTRIBUTES
+        attributes = ",".join(CatchingObject.ATTRIBUTES)
         values = ",".join(self.values)
         return super().insert(table, attributes, values)
 
@@ -233,6 +233,6 @@ class LogInfo(SQL_oper):
 
     def insert(self):
         table = LogInfo.TABLE_NAME
-        attributes = LogInfo.ATTRIBUTES
+        attributes = ",".join(LogInfo.ATTRIBUTES)
         values = ",".join(self.values)
         return super().insert(table, attributes, values)
