@@ -2,68 +2,77 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Login</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="../static/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="../static/images/favicon.png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../static/images/favicon.png"/>
 </head>
 
 <body>
-  <div class="container-scroller">
+<div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-{#                <img src="../static/images/logo.svg" alt="logo">#}
-                  <p>我是一个还没设计完的logo</p>
-              </div>
-              <h4>你好! 欢迎使用</h4>
-              <form class="pt-3">
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="brand-logo">
+                            {#                <img src="../static/images/logo.svg" alt="logo">#}
+                            <p>我是一个还没设计完的logo</p>
+                        </div>
+                        <h4>你好! 欢迎使用</h4>
+                        <form method="get" class="pt-3" action='/login'>
+                            {% for message in get_flashed_messages() %}
+                                <div class="alert alert-info">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-lg" name="loginUsername"
+                                       placeholder="用户名/邮箱" id="username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-lg" name="loginPassword"
+                                       placeholder="密码" id="password">
+                            </div>
+                            <div class="mt-3">
+                                <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                   value="登录">
+                            </div>
+                            <div class="my-2 d-flex justify-content-end align-items-center">
+                                <a href="#" class="auth-link text-black">忘记密码?</a>
+                            </div>
+                            <div class="text-center mt-4 font-weight-light">
+                                没有账户? <a href="register" class="text-primary">注册一个</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
-                </div>
-                <div class="my-2 d-flex justify-content-end align-items-center">
-                  <a href="#" class="auth-link text-black">忘记密码?</a>
-                </div>
-                <div class="text-center mt-4 font-weight-light">
-                  没有账户? <a href="register.html" class="text-primary">注册一个</a>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- content-wrapper ends -->
+        <!-- content-wrapper ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../static/vendors/base/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../static/js/off-canvas.js"></script>
-  <script src="../static/js/hoverable-collapse.js"></script>
-  <script src="../static/js/template.js"></script>
-  <!-- endinject -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="../static/vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="../static/js/off-canvas.js"></script>
+<script src="../static/js/hoverable-collapse.js"></script>
+<script src="../static/js/template.js"></script>
+<!-- endinject -->
 </body>
 
 </html>

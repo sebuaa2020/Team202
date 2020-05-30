@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="team202_ROS_database" uuid="5298793c-b927-4442-a83a-2f987f50d98c">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\大三下\软件工程\课程设计\Team202\ROS_web\team202_ROS_database.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
