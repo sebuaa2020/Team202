@@ -19,22 +19,37 @@ def goto_index():
 def get_login_request():
     username = request.args.get('loginUsername')
     password = request.args.get('loginPassword')
-    result = dbmessage.User.query(username)
-    if result and result.user_pwd == password:  # 用户名和密码与数据库中数据相对应
-        session['name'] = username
-        return redirect(url_for('index', name=username, _external=True))
-    else:
-        flash('用户名或密码不正确！')
-        return render_template('login.html')
+    if username:
+        result = dbmessage.User.query(username)
+        if result and result.user_pwd == password:  # 用户名和密码与数据库中数据相对应
+            session['name'] = username
+            return redirect(url_for('index', name=username, _external=True))
+        else:
+            flash('用户名或密码不正确！')
+            return render_template('login.html')
+    return render_template('login.html')
 
 
 @app.route('/register')
 def add_user():
+    username = request.args.get('registerUsername')
+    password = request.args.get('registerPassword')
+    if username:
+        result = dbmessage.User.query(username)
+        if result:
+            flash('邮箱已被注册！')
+            return render_template('register.html')
+        else:
+            user = dbmessage.User(username, password)
+            user.insert()
+            flash('注册成功！请登录')
+            return render_template('login.html')
     return render_template('register.html')
 
 
 @app.route('/index')
 def index():
+    user_id = session.get('name')
     pattern = request.args.get('pattern')
     action = request.args.get('action')
     if action:
