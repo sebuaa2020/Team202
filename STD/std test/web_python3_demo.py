@@ -10,8 +10,9 @@ import hmac
 import json
 import os
 import time
-
+import pyaudio
 import requests
+import wave
 
 lfasr_host = 'http://raasr.xfyun.cn/api'
 
@@ -36,6 +37,43 @@ max_alternatives = 0
 # 子用户标识
 suid = ''
 
+def audio_record(out_file, rec_time):
+    CHUNK = 1024
+    FORMAT = pyaudio.paInt16 #16bit编码格式
+    CHANNELS = 1 #单声道
+    RATE = 16000 #16000采样频率
+    
+    p = pyaudio.PyAudio()
+    # 创建音频流 
+    stream = p.open(format=FORMAT, # 音频流wav格式
+                    channels=CHANNELS, # 单声道
+                    rate=RATE, # 采样率16000
+                    input=True,
+                    frames_per_buffer=CHUNK)
+
+    print("Start Recording...")
+
+    frames = [] # 录制的音频流
+    # 录制音频数据
+    for i in range(0, int(RATE / CHUNK * rec_time)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+    
+    # 录制完成
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    print("Recording Done...")
+
+    # 保存音频文件
+    wf = wave.open(out_file, 'wb')
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(p.get_sample_size(FORMAT))
+    wf.setframerate(RATE)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+	
 
 class SliceIdGenerator:
 	"""slice id生成器"""
@@ -115,11 +153,7 @@ class RequestApi(object):
 		response = requests.post(lfasr_host + apiname, data=data, files=files, headers=headers)
 		result = json.loads(response.text)
 		if result["ok"] == 0:
-			if flag is not None:
-				strs = result['data'].split('onebest":"')[1:]
-				for s in strs:
-					tmp = s.split('"')[0]
-					print(tmp)
+			
 			#print("{} success:".format(apiname) + str(result))
 			return result
 		else:
@@ -200,11 +234,19 @@ class RequestApi(object):
 			# 每次获取进度间隔20S
 			time.sleep(20)
 		# 5 . 获取结果
-		self.get_result_request(taskid=taskid)
+		result = self.get_result_request(taskid=taskid)
+		return result
 
-
+def	main(path):
+	api = RequestApi(appid="5ece8e4e", secret_key="788edcd0cf457ec1d5ed67a4564a12f4", upload_file_path=path)
+	result = api.all_api_request()
+	strs = result['data'].split('onebest":"')[1:]
+	for s in strs:
+		tmp = s.split('"')[0]
+		print(tmp)
+	
 # 注意：如果出现requests模块报错："NoneType" object has no attribute 'read', 请尝试将requests模块更新到2.20.0或以上版本(本demo测试版本为2.20.0)
 # 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
-	api = RequestApi(appid="5ece8e4e", secret_key="788edcd0cf457ec1d5ed67a4564a12f4", upload_file_path=r"./3.m4a")
-	api.all_api_request()
+	audio_record('instr.wav', 10)
+	main(r'./instr.wav')
