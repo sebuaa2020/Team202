@@ -27,16 +27,16 @@ const int k_vel = 3;
 
 int main(int argc, char* argv[])
 {
-    ros::init(argc, argv, "keyboard_vel_cmd");
+    ros::init(argc, argv, "manual_ctrl");
 
     printf("手动控制指令： \n");
-    printf("w - 向前加速 \n");
-    printf("s - 向后加速 \n");
-    printf("a - 向左加速 \n");
-    printf("d - 向右加速 \n");
-    printf("q - 左旋加速 \n");
-    printf("e - 右旋加速 \n");
-    printf("空格 - 刹车 \n");
+    printf("w/W - 前进 \t");
+    printf("s/S - 倒车 \n");
+    printf("a/A - 左平移 \t");
+    printf("d/D - 右平移 \n");
+    printf("q/Q - 左转 \t");
+    printf("e/E - 右转 \n");
+    printf("SPACE - 刹车 \t");
     printf("ESC - 退出 \n");
     printf("------------- \n");
 
