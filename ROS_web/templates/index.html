@@ -24,10 +24,10 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex justify-content-center">
             <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-{#                <a class="navbar-brand brand-logo" href="index.html"><img src="../static/images/logo.svg"#}
-{#                                                                          alt="logo"/></a>#}
-{#                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../static/images/logo-mini.svg"#}
-{#                                                                               alt="logo"/></a>#}
+                {#                <a class="navbar-brand brand-logo" href="index.html"><img src="../static/images/logo.svg"#}
+                {#                                                                          alt="logo"/></a>#}
+                {#                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../static/images/logo-mini.svg"#}
+                {#                                                                               alt="logo"/></a>#}
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-sort-variant"></span>
                 </button>
@@ -121,62 +121,58 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <button type="button" class="btn btn-inverse-secondary btn-fw">建立地图</button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body text-center">
-                                <button type="button" data-toggle="modal" data-target="#basicMove"
-                                        class="btn btn-inverse-primary btn-fw" aria-hidden="true">基本移动模式
+                                <button type="button" data-toggle="modal" data-target="#init_map"
+                                        class="btn btn-inverse-success btn-fw">建立环境地图
                                 </button>
                                 <!-- Modal-->
-                                <div id="basicMove" tabindex="-1" role="dialog" data-backdrop="static"
+                                <div id="init_map" tabindex="-1" role="dialog" data-backdrop="static"
                                      data-keyboard="false"
-                                     aria-labelledby="exampleModalLabel"
-                                     aria-hidden="true" class="modal fade text-left">
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                     class="modal fade text-left">
                                     <div role="document" class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 id="exampleModalLabel" class="modal-title">基本移动模式</h4>
-                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                                {#                                            aria-hidden="true">×</span></button>#}
+                                                <h4 id="exampleModalLabel" class="modal-title">建立环境地图</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="template-demo text-center">
                                                     <button type="button"
-                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                            onclick="goForward()">
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="goForward_map()">
                                                         前进
                                                     </button>
                                                 </div>
                                                 <div class="template-demo text-center">
                                                     <button type="button"
-                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                            onclick="goLeft()">
-                                                        左转
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="goLeft_map()">
+                                                        左移
                                                     </button>
                                                     <button type="button"
-                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
-                                                            onclick="goRight()">
-                                                        右转
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="stop_map()">
+                                                        停止
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
+                                                            onclick="goRight_map()">
+                                                        右移
                                                     </button>
                                                 </div>
                                                 <div class="template-demo text-center">
                                                     <button type="button"
-                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
                                                             onclick="goBackward()">
                                                         后退
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" data-dismiss="modal" class="btn btn-primary"
-                                                        onclick="exit1()">Exit
+                                                <button type="button" data-dismiss="modal" class="btn btn-success"
+                                                        onclick="exit2()">保存地图
                                                 </button>
                                             </div>
                                         </div>
@@ -204,11 +200,14 @@
                                                 {#                                            aria-hidden="true">×</span></button>#}
                                             </div>
                                             <div class="modal-body">
-                                                <div class="template-demo text-center">
-                                                    <button type="button"
-                                                            class="btn btn-inverse-info btn-icon-text btn-rounded">
-                                                        选择目的地
-                                                    </button>
+                                                <div class="template-demo">
+                                                    <label class="col-sm-3 col-form-label">选择目的地</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" id="select_place">
+                                                            <option>目的地1</option>
+                                                            <option>目的地2</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="template-demo text-center">
                                                     <button type="button"
@@ -232,40 +231,55 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body text-center">
-                                <button type="button" data-toggle="modal" data-target="#follow"
-                                        class="btn btn-inverse-success btn-fw">跟随移动模式
+                                <button type="button" data-toggle="modal" data-target="#basicMove"
+                                        class="btn btn-inverse-primary btn-fw" aria-hidden="true">基本移动模式
                                 </button>
                                 <!-- Modal-->
-                                <div id="follow" tabindex="-1" role="dialog" data-backdrop="static"
+                                <div id="basicMove" tabindex="-1" role="dialog" data-backdrop="static"
                                      data-keyboard="false"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true"
-                                     class="modal fade text-left">
+                                     aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true" class="modal fade text-left">
                                     <div role="document" class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 id="exampleModalLabel" class="modal-title">跟随移动模式</h4>
-                                                {#                                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span#}
-                                                {#                                            aria-hidden="true">×</span></button>#}
+                                                <h4 id="exampleModalLabel" class="modal-title">基本移动模式</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="template-demo text-center">
                                                     <button type="button"
-                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
-                                                            onclick="startFollow()">
-                                                        开始跟随
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goForward()">
+                                                        前进
                                                     </button>
                                                 </div>
                                                 <div class="template-demo text-center">
                                                     <button type="button"
-                                                            class="btn btn-inverse-success btn-icon-text btn-rounded"
-                                                            onclick="stopFollow()">
-                                                        结束跟随
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goLeft()">
+                                                        左移
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="stop_move()">
+                                                        停止
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goRight()">
+                                                        右移
+                                                    </button>
+                                                </div>
+                                                <div class="template-demo text-center">
+                                                    <button type="button"
+                                                            class="btn btn-inverse-primary btn-icon-text btn-rounded"
+                                                            onclick="goBackward()">
+                                                        后退
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" data-dismiss="modal" class="btn btn-success"
-                                                        onclick="exit2()">Exit
+                                                <button type="button" data-dismiss="modal" class="btn btn-primary"
+                                                        onclick="exit1()">Exit
                                                 </button>
                                             </div>
                                         </div>
@@ -294,19 +308,10 @@
                                             <div class="modal-body">
                                                 <form>
                                                     <div class="form-group">
-                                                        <label>请输入目的地</label>
-                                                        <input type="text" placeholder="e.g. 桌子" class="form-control"
-                                                               id="place">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>请输入物品名称</label>
-                                                        <input type="text" placeholder="e.g. 水瓶" class="form-control"
-                                                               id="object">
-                                                    </div>
-                                                    <div class="form-group">
                                                         <button type="button"
                                                                 class="btn btn-inverse-warning btn-icon-text btn-rounded"
-                                                                onclick="grabChoice()">开始抓取
+                                                                onclick="startDetect()">
+                                                            开始检测
                                                         </button>
                                                     </div>
                                                 </form>
@@ -376,6 +381,24 @@
         })
     }
 
+    function stop_move() {
+        const data = {
+            'pattern': '1',
+            'action': 'stop'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert(data['rcv']);
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
     function goLeft() {
         const data = {
             'pattern': '1',
@@ -412,17 +435,17 @@
         })
     }
 
-    function startFollow() {
+    function goForward_map() {
         const data = {
             'pattern': '2',
-            'action': 'start'
+            'action': 'forward'
         };
         $.ajax({
             url: "{{ url_for('index') }}",
             type: "get",
             data: data,
             success: function (data) {
-                alert("start follow");
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -430,7 +453,25 @@
         })
     }
 
-    function stopFollow() {
+    function goBackward_map() {
+        const data = {
+            'pattern': '2',
+            'action': 'backward'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert(data['rcv']);
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function stop_map() {
         const data = {
             'pattern': '2',
             'action': 'stop'
@@ -440,7 +481,43 @@
             type: "get",
             data: data,
             success: function (data) {
-                alert("stop follow");
+                alert(data['rcv']);
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function goLeft_map() {
+        const data = {
+            'pattern': '2',
+            'action': 'left'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert(data['rcv']);
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function goRight_map() {
+        const data = {
+            'pattern': '2',
+            'action': 'right'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert(data['rcv']);
             },
             error: function (e) {
                 alert("Error！");
@@ -449,9 +526,11 @@
     }
 
     function startNavi() {
+        const select_place = $.trim($('#select_place').val());
         const data = {
             'pattern': '3',
-            'action': 'start'
+            'action': 'start',
+            'place': select_place
         };
         $.ajax({
             url: "{{ url_for('index') }}",
@@ -466,20 +545,17 @@
         })
     }
 
-    function grabChoice() {
-        const place = $.trim($('#place').val());
-        const object = $.trim($('#object').val());
+    function startDetect() {
         const data = {
             'pattern': '4',
-            'place': place,
-            'object': object
+            'action': 'start'
         };
         $.ajax({
             url: "{{ url_for('index') }}",
             type: "get",
             data: data,
             success: function (data) {
-                alert("grab choice");
+                alert("start detect");
             },
             error: function (e) {
                 alert("Error！");
