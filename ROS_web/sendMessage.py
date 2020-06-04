@@ -17,8 +17,9 @@ def tcp_link_conn():
 
 def send_msg(message):
     client.sendall(message.encode())
-    data = client.recv(1024)
-    data = data.decode()
+    # data = client.recv(1024)
+    # data = data.decode()
+    data = 'ok'
     print('received:', data)
     return data
 
