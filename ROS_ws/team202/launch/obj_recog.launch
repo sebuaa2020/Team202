@@ -2,28 +2,29 @@
 
   <arg name="model" default="$(find wpb_home_bringup)/urdf/wpb_home.urdf"/>
   <arg name="gui" default="true" />
-  <arg name="rvizconfig" default="$(find wpb_home_apps)/rviz/obj_reco.rviz" />
+  <arg name="rvizconfig" default="$(find team202)/rviz/obj_reco.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
   <param name="use_gui" value="$(arg gui)"/>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-  <rosparam command="load" file="$(find wpb_home_bringup)/config/wpb_home.yaml" />
+  <rosparam command="load" file="$(find team202)/config/wpb_home.yaml" />
   </node>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
   <!-- Run xfyun IAT -->
-  <node pkg="xfyun_waterplus" type="iat_node" name="xfyun_iat_node" output="screen">
+  <!--node pkg="xfyun_waterplus" type="iat_node" name="xfyun_iat_node" output="screen">
       <param name="cn" type="bool" value="false"/>
       <param name="start" type="bool" value="true"/>
-  </node>
+  </node-->
   <!-- Run xfyun TTS -->
-  <node pkg="xfyun_waterplus" type="tts_node" name="xfyun_tts_node" /> 
+  <!--node pkg="xfyun_waterplus" type="tts_node" name="xfyun_tts_node" /--> 
   <!-- Run sound_play -->
-  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
+  <!--node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/-->
+
   <!-- Run object_recognition -->
-  <node pkg="wpb_home_apps" type="object_recognition" name="object_recognition" output="screen" />
+  <node pkg="team202" type="object_recognition" name="object_recognition" output="screen" />
 
   <!--- Run Kinect -->
   <!--************************ kinect ************************-->
@@ -32,7 +33,7 @@
   <arg name="publish_tf"        default="false"/>
   <arg name="base_name_tf"      default="$(arg base_name)"/>
   <arg name="fps_limit"         default="-1.0"/>
-  <arg name="calib_path"        default="$(find kinect2_bridge)/data/"/>
+  <!--arg name="calib_path"        default="$(find kinect2_bridge)/data/"/-->
   <arg name="use_png"           default="false"/>
   <arg name="jpeg_quality"      default="90"/>
   <arg name="png_level"         default="1"/>
@@ -59,7 +60,7 @@
   <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
         if="$(arg start_manager)" machine="$(arg machine)" />
 
-  <!-- Nodelet version of kinect2_bridge -->
+  <!-- Nodelet version of kinect2_bridge >
   <node pkg="nodelet" type="nodelet" name="$(arg base_name)_bridge" machine="$(arg machine)"
         args="load kinect2_bridge/kinect2_bridge_nodelet $(arg nodelet_manager)"
         respawn="$(arg respawn)" output="$(arg output)" if="$(arg use_nodelet)">
@@ -82,10 +83,10 @@
     <param name="bilateral_filter"  type="bool"   value="$(arg bilateral_filter)"/>
     <param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
     <param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
-  </node>
+  </node-->
 
   <!-- Node version of kinect2_bridge -->
-  <node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name)_bridge" machine="$(arg machine)"
+  <!--node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name)_bridge" machine="$(arg machine)"
         respawn="$(arg respawn)" output="$(arg output)" unless="$(arg use_nodelet)">
     <param name="base_name"         type="str"    value="$(arg base_name)"/>
     <param name="sensor"            type="str"    value="$(arg sensor)"/>
@@ -106,7 +107,7 @@
     <param name="bilateral_filter"  type="bool"   value="$(arg bilateral_filter)"/>
     <param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
     <param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
-  </node>
+  </node-->
 
    <!-- qhd point cloud (960 x 540) -->
   <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_qhd" machine="$(arg machine)"

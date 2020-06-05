@@ -125,7 +125,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <button type="button" data-toggle="modal" data-target="#init_map"
-                                        class="btn btn-inverse-success btn-fw">建立环境地图
+                                        class="btn btn-inverse-success btn-fw" onclick="mode2()">建立环境地图
                                 </button>
                                 <!-- Modal-->
                                 <div id="init_map" tabindex="-1" role="dialog" data-backdrop="static"
@@ -172,7 +172,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" data-dismiss="modal" class="btn btn-success"
-                                                        onclick="exit2()">保存地图
+                                                        onclick="exit2()">覆盖原有地图
                                                 </button>
                                             </div>
                                         </div>
@@ -185,7 +185,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <button type="button" data-toggle="modal" data-target="#navi"
-                                        class="btn btn-inverse-info btn-fw">
+                                        class="btn btn-inverse-info btn-fw" onclick="mode3()">
                                     导航模式
                                 </button>
                                 <!-- Modal-->
@@ -204,8 +204,11 @@
                                                     <label class="col-sm-3 col-form-label">选择目的地</label>
                                                     <div class="col-sm-9">
                                                         <select class="form-control" id="select_place">
-                                                            <option>目的地1</option>
-                                                            <option>目的地2</option>
+                                                            <option>Destination 1</option>
+                                                            <option>Destination 2</option>
+                                                            <option>Destination 3</option>
+                                                            <option>Destination 4</option>
+                                                            <option>Destination 5</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -232,7 +235,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <button type="button" data-toggle="modal" data-target="#basicMove"
-                                        class="btn btn-inverse-primary btn-fw" aria-hidden="true">基本移动模式
+                                        class="btn btn-inverse-primary btn-fw" aria-hidden="true" onclick="mode1()">基本移动模式
                                 </button>
                                 <!-- Modal-->
                                 <div id="basicMove" tabindex="-1" role="dialog" data-backdrop="static"
@@ -278,6 +281,9 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                        onclick="voice1()">语音控制
+                                                </button>
                                                 <button type="button" data-dismiss="modal" class="btn btn-primary"
                                                         onclick="exit1()">Exit
                                                 </button>
@@ -292,7 +298,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <button type="button" data-toggle="modal" data-target="#grab"
-                                        class="btn btn-inverse-warning btn-fw">抓取模式
+                                        class="btn btn-inverse-warning btn-fw" onclick="mode4()">抓取模式
                                 </button>
                                 <!-- Modal-->
                                 <div id="grab" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
@@ -529,8 +535,7 @@
         const select_place = $.trim($('#select_place').val());
         const data = {
             'pattern': '3',
-            'action': 'start',
-            'place': select_place
+            'action': select_place
         };
         $.ajax({
             url: "{{ url_for('index') }}",
@@ -628,6 +633,95 @@
             data: data,
             success: function (data) {
                 alert("grab exit");
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function mode1() {
+        const data = {
+            'pattern': '1',
+            'action': 'mode'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert("basic mode");
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function mode2() {
+        const data = {
+            'pattern': '2',
+            'action': 'mode'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert("slam mode");
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function mode3() {
+        const data = {
+            'pattern': '3',
+            'action': 'mode'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert("navi mode");
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function mode4() {
+        const data = {
+            'pattern': '4',
+            'action': 'mode'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+                alert("detect mode");
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function voice1() {
+        const data = {
+            'pattern': '1',
+            'action': 'voice'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
             },
             error: function (e) {
                 alert("Error！");

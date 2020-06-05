@@ -4,6 +4,9 @@ from flask import request
 from flask import jsonify
 import sendMessage
 import dbmessage
+import os
+import voice
+import time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456'  # flask生成密钥
@@ -11,7 +14,6 @@ app.config['SECRET_KEY'] = '123456'  # flask生成密钥
 
 @app.route('/')
 def goto_index():
-    # sendMessage.tcp_link_conn()
     return render_template('login.html')  # 直接跳转到登陆页面
 
 
@@ -23,6 +25,7 @@ def get_login_request():
         result = dbmessage.User.query(username)  # 查询数据库是否有本用户
         if result and result.user_pwd == password:  # 用户名和密码与数据库中数据相对应
             session['name'] = username  # 将用户id存入缓存
+            sendMessage.tcp_link_conn()  # 与主控端建立tcp连接
             return redirect(url_for('index', name=username, _external=True))  # 跳转到主页
         else:
             flash('用户名或密码不正确！')
@@ -52,6 +55,12 @@ def index():
     pattern = request.args.get('pattern')
     action = request.args.get('action')
     if action:
+        if pattern == '1' and action == 'voice':
+            voice.audio_record('instr.wav', 5)
+            os.system('wait_voiceDetect.mp3')
+            #voice.main(r'./instr.wav')
+            time.sleep(10)
+            action = 'forward'
         msg = pattern + ' ' + action
         print(msg)
         rcv_msg = sendMessage.send_msg(msg)
