@@ -67,7 +67,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
-#include "xfyun_waterplus/IATSwitch.h"
 
 using namespace cv;
 using namespace std;
@@ -103,9 +102,6 @@ static ros::Publisher clustering4;
 static ros::Publisher masking;
 static ros::Publisher color;
 static ros::Publisher image_pub;
-static ros::Publisher spk_pub;
-static ros::ServiceClient clientIAT;
-static xfyun_waterplus::IATSwitch srvIAT;
 
 static std::vector<Rect> arObj;
 
@@ -123,16 +119,6 @@ typedef struct stBoxMarker
 }stBoxMarker;
 
 static stBoxMarker boxMarker;
-
-static void Speak(string inStr)
-{
-    sound_play::SoundRequest sp;
-    sp.sound = sound_play::SoundRequest::SAY;
-    sp.command = sound_play::SoundRequest::PLAY_ONCE;
-    sp.arg = inStr;
-    sp.volume = 1.0f;  //indigo(Ubuntu 14.04)需要注释掉这一句才能编译
-    spk_pub.publish(sp);
-}
 
 cv::Mat drawObjRGB(cv::Mat inImage) 
 {
@@ -401,7 +387,7 @@ void ProcColorCB(const sensor_msgs::ImageConstPtr& msg)
  
     imwrite("/home/robot/objects.jpg",cv_ptr->image);
     ROS_INFO("Save the image of object recognition!!");
-    Speak("OK,I have recognize the objects.");
+    //Speak("OK,I have recognize the objects.");
     nState = STATE_DONE;
 }
 
@@ -416,10 +402,8 @@ void KeywordCB(const std_msgs::String::ConstPtr & msg)
         int nFindRobertIndex = msg->data.find("Robert");
         if(nFindRobotIndex >= 0 || nFindRobertIndex >=0 )
         {
-            Speak("I am going to recognize the objects");
+            //Speak("I am going to recognize the objects");
             //识别完毕,关闭语音识别
-            srvIAT.request.active = false;
-            clientIAT.call(srvIAT);
             usleep(2*1000*1000);
             nState = STATE_COUNTDOWN;
         }
@@ -528,14 +512,11 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ros::Subscriber pc_sub = n.subscribe("/kinect2/qhd/points", 1 , ProcCloudCB);
     ros::Subscriber rgb_sub = n.subscribe("/kinect2/qhd/image_color", 1 , ProcColorCB);
-    ros::Subscriber sub_sr = n.subscribe("/xfyun/iat", 10, KeywordCB);
     pc_pub = n.advertise<sensor_msgs::PointCloud2>("obj_pointcloud",1);
     marker_pub = n.advertise<visualization_msgs::Marker>("obj_marker", 10);
     segmented_objects = n.advertise<PointCloud> ("segmented_objects",1);
     segmented_plane = n.advertise<PointCloud> ("segmented_plane",1);
-    spk_pub = n.advertise<sound_play::SoundRequest>("/robotsound", 20);
     image_pub = n.advertise<sensor_msgs::Image>("/obj_reco/result", 2);
-    clientIAT = n.serviceClient<xfyun_waterplus::IATSwitch>("xfyun_waterplus/IATSwitch");
 
     ros::Rate r(0.8);
     while(ros::ok())
@@ -548,12 +529,12 @@ int main(int argc, char **argv)
                 std::ostringstream stringStream;
                 stringStream << nCountDown;
                 std::string retStr = stringStream.str();
-                Speak(retStr);
+                //Speak(retStr);
                 nCountDown --;
             }
             else
             {
-                Speak("I am recognizing... wait a moment");
+                //Speak("I am recognizing... wait a moment");
                 nState = STATE_DETECT;
             }
         }
