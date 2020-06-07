@@ -20,7 +20,7 @@ catkin_make
 
 <img src="./media/catkin.png" style="zoom:67%;" />
 
-得到[100%]的反馈编即为译成功，发现 `~/demo2_ws` 目录下多出了 `build` 和 `devel` 文件夹。此时需要将 `demo2_ws` 刷新写入 `~/.bashrc`（或使用zsh的小伙伴需要写入`~/.zshrc`） 文件：
+得到[100%]的反馈即为编译成功，发现 `~/demo2_ws` 目录下多出了 `build` 和 `devel` 文件夹。此时需要将 `demo2_ws` 刷新写入 `~/.bashrc`（或使用zsh的小伙伴需要写入`~/.zshrc`） 文件：
 
 ```
 echo 'source ~/demo2_ws/devel/setup.bash' >> ~/.bashrc
