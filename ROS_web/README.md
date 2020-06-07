@@ -12,7 +12,29 @@
 
 #### 登录页面
 
+<img src="./media/login.png" style="zoom:38%;" />
+
+软件首先跳转到如上图的登录页面，若输入的用户名和密码与数据库中的相对应，则用户成功登录，跳转到首页；否则会如下图提醒用户邮箱或密码错误：
+
+<img src="./media/login_error.png" style="zoom:38%;" />
+
 #### 注册页面
+
+点击登录页面上的“注册一个”跳转到注册页面，用户输入用户名及密码进行注册，若用户名不符合邮箱格式，则会如下图提醒用户：
+
+<img src="./media/regist_email.png" style="zoom:38%;" />
+
+若用户名或密码有空缺，则会如下图提醒用户：
+
+<img src="./media/regist_lack.png" style="zoom:38%;" />
+
+若用户名已被注册，则会如下图提醒用户：
+
+<img src="./media/regist_dup.png" style="zoom:38%;" />
+
+若无上述问题，则会如下图提醒用户注册成功并跳转至登录页面：
+
+<img src="./media/regist_success.png" style="zoom:38%;" />
 
 #### 首页
 
