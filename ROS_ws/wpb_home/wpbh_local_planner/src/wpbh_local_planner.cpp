@@ -42,8 +42,7 @@
 #include <wpbh_local_planner/CLidarAC.h>
 
 // register this planner as a WpbhLocalPlanner plugin
-//PLUGINLIB_DECLARE_CLASS(wpbh_local_planner, WpbhLocalPlanner, wpbh_local_planner::WpbhLocalPlanner, nav_core::BaseLocalPlanner)
-PLUGINLIB_EXPORT_CLASS( wpbh_local_planner::WpbhLocalPlanner, nav_core::BaseLocalPlanner)
+PLUGINLIB_DECLARE_CLASS(wpbh_local_planner, WpbhLocalPlanner, wpbh_local_planner::WpbhLocalPlanner, nav_core::BaseLocalPlanner)
 
 static CLidarAC lidar_ac;
 static float ranges[360];
