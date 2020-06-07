@@ -2,7 +2,7 @@
 
 # ROS目标检测及抓取型机器人
 
-![](https://img.shields.io/badge/version-1.01-orange.svg)![](https://img.shields.io/badge/license-MIT-Green.svg)![](https://img.shields.io/badge/'Powered by'-Team202-green.svg)
+![](https://img.shields.io/badge/version-1.01-orange.svg)![](https://img.shields.io/badge/license-MIT-Green.svg)
 
 ## 项目介绍
 
