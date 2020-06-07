@@ -2,7 +2,16 @@
 
 ### 安装方法
 
-在本地新建一个文件夹（本说明用demo2_ws举例），在demo2_ws中再建一个src文件夹，将wpr_simulation，wpb_home和team202文件夹复制到其中，使用以下命令进入并编译工作空间：
+在本地新建一个文件夹（本说明用demo2_ws举例），在demo2_ws中再建一个src文件夹，将wpr_simulation，wpb_home和team202文件夹复制到其中，然后配置设备访问权限：
+
+```
+roscd wpb_home_bringup
+cd scripts
+chmod +x create_udev_rules.sh
+./create_udev_rules.sh
+```
+
+使用以下命令进入并编译工作空间：
 
 ```
 cd ~/demo2_ws
@@ -37,7 +46,7 @@ roslaunch wpr_simulation wpb_simple.launch
 分别在两个命令行窗口使用以下两条命令，启动 `SLAM` 建图以及启动键盘控制：
 
 ```
-roslaunch wpr_simulation wpb_gmapping.launch
+roslaunch team202 gmapping.launch
 ```
 
 ```
@@ -51,7 +60,7 @@ rosrun wpr_simulation keyboard_vel_ctrl
 在命令行使用以下命令可开启导航界面：
 
 ```
-roslaunch wpr_simulation wpb_navigation.launch
+roslaunch team202 navigation.launch
 ```
 
 ![](./media/navigation_Moment.jpg)
@@ -99,11 +108,11 @@ rosrun waterplus_map_tools wp_saver
 分别在两个命令行窗口使用以下两条命令，启用导航功能并输入目标航点：
 
 ```
-roslaunch waterplus_map_tools wpb_home_nav_test.launch
+roslaunch team202 navigation.launch
 ```
 
 ```
-rosrun waterplus_map_tools nav 1
+rosrun team202 nav 1
 ```
 
 其中，1为用户自定义的目标航点的名称。
