@@ -136,3 +136,6 @@ rosrun wpr_simulation keyboard_vel_ctrl
 roslaunch team_202 grab_action.launch
 ```
 
+![grab](./media/grab.png)
+
+而后可通过调节一旁的joint_state_publisher中的参数，控制机械臂升降、伸展，及机械手的开合。
