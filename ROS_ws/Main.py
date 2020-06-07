@@ -11,7 +11,7 @@ def control_shell(data):
     # print(instruct[0], instruct[1])
     if instruct[0] == '1': # 基本移动模式
         if instruct[1] == 'mode': # 进入该模式
-            os.system("gnome-terminal -e 'bash -c \"rosrun manual_control manual_ctrl\"'")
+            os.system("gnome-terminal -e 'bash -c \"rosrun team202 manual_ctrl\"'")
         elif instruct[1] == 'forward': # 前进
             v = virtkey.virtkey() # 调用系统键盘
             v.press_unicode(ord('w')) # 模拟字母w
@@ -45,9 +45,9 @@ def control_shell(data):
             os.system("exit")
     elif instruct[0] == '2': # 建立环境地图
         if instruct[1] == 'mode': # 进入该模式
-            os.system("gnome-terminal -e 'bash -c \"roslaunch wpr_simulation wpb_gmapping.launch\"'")
+            os.system("gnome-terminal -e 'bash -c \"roslaunch team202 gmapping.launch\"'")
             time.sleep(3)
-            os.system("gnome-terminal -e 'bash -c \"rosrun manual_control manual_ctrl\"'")
+            os.system("gnome-terminal -e 'bash -c \"rosrun team202 manual_ctrl\"'")
         elif instruct[1] == 'forward': # 前进
             v = virtkey.virtkey() # 调用系统键盘
             v.press_unicode(ord('w')) # 模拟字母w
@@ -87,10 +87,10 @@ def control_shell(data):
             os.system("exit")
     elif instruct[0] == '3': # 导航模式
         if instruct[1] == 'mode': # 进入该模式
-            os.system("gnome-terminal -e 'bash -c \"roslaunch wpr_simulation wpb_navigation.launch\"'")
+            os.system("gnome-terminal -e 'bash -c \"roslaunch team202 navigation.launch\"'")
         elif 'Destination' in instruct[1]:
             place = instruct[2]
-            os.system("gnome-terminal -e 'bash -c \"rosrun waterplus_map_tools wp_nav_test " + place + "\"'")
+            os.system("gnome-terminal -e 'bash -c \"rosrun team202 nav " + place + "\"'")
             os.system("exit")
         elif instruct[1] == 'exit':
             os.system("gnome-terminal -e 'bash -c \"rosnode kill rviz\"'")
@@ -123,3 +123,4 @@ if __name__=="__main__":
     
     conn.close()
     s.close()
+
