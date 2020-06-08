@@ -25,7 +25,7 @@ def get_login_request():
         result = dbmessage.User.query(username)  # 查询数据库是否有本用户
         if result and result.user_pwd == password:  # 用户名和密码与数据库中数据相对应
             session['name'] = username  # 将用户id存入缓存
-            sendMessage.tcp_link_conn()  # 与主控端建立tcp连接
+            # sendMessage.tcp_link_conn()  # 与主控端建立tcp连接
             return redirect(url_for('index', name=username, _external=True))  # 跳转到主页
         else:
             flash('用户名或密码不正确！')
@@ -61,6 +61,11 @@ def index():
             #voice.main(r'./instr.wav')
             time.sleep(10)
             action = 'forward'
+        if pattern == '3' and action == 'voice':
+            voice.audio_record('instr.wav', 5)
+            os.system('wait_voiceDetect.mp3')
+            time.sleep(10)
+            action = 'Destination 2'
         msg = pattern + ' ' + action
         print(msg)
         rcv_msg = sendMessage.send_msg(msg)

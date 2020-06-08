@@ -20,7 +20,11 @@
 
 #### 注册页面
 
-点击登录页面上的“注册一个”跳转到注册页面，用户输入用户名及密码进行注册，若用户名不符合邮箱格式，则会如下图提醒用户：
+点击登录页面上的“注册一个”跳转到注册页面，如下图所示：
+
+<img src="./media/regist.png" style="zoom:38%;" />
+
+用户输入用户名及密码进行注册，若用户名不符合邮箱格式，则会如下图提醒用户：
 
 <img src="./media/regist_email.png" style="zoom:38%;" />
 
@@ -38,7 +42,29 @@
 
 #### 首页
 
+用户登录成功跳转至首页，包含了建图模式、基本移动模式、导航模式及抓取模式功能，页面如下图所示：
+
+<img src="./media/index.png" style="zoom:38%;" />
+
+为了使页面简洁，四种功能界面采用弹窗形式，点击其中的按钮对机器人发出相应的指令：
+
+<img src="./media/slam.png" style="zoom:38%;" />
+
+<img src="./media/basic.png" style="zoom:38%;" />
+
+<img src="./media/navi.png" style="zoom:38%;" />
+
+<img src="./media/grab.png" style="zoom:38%;" />
+
 #### 帮助文档页面
 
+本页面详细说明了软件的使用方法及功能，方便用户进行使用方法的查看：
+
+<img src="./media/help.png" style="zoom:38%;" />
+
 #### 关于我们页面
+
+本页面介绍了团队情况及信息，便于用户了解及提供意见和建议：
+
+<img src="./media/about_us.png" style="zoom:38%;" />
 

@@ -152,6 +152,9 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"
+                                                        onclick="voice2()">语音控制
+                                                </button>
                                                 <button type="button" data-dismiss="modal" class="btn btn-success"
                                                         onclick="exit2()">覆盖原有地图
                                                 </button>
@@ -202,6 +205,9 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-info"
+                                                        onclick="voice3()">语音控制
+                                                </button>
                                                 <button type="button" data-dismiss="modal" class="btn btn-info"
                                                         onclick="exit3()">Exit
                                                 </button>
@@ -305,6 +311,9 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-warning"
+                                                        onclick="voice4()">语音控制
+                                                </button>
                                                 <button type="button" data-dismiss="modal" class="btn btn-warning"
                                                         onclick="exit4()">Exit
                                                 </button>
@@ -697,6 +706,56 @@
     function voice1() {
         const data = {
             'pattern': '1',
+            'action': 'voice'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function voice2() {
+        const data = {
+            'pattern': '2',
+            'action': 'voice'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+
+    function voice3() {
+        const data = {
+            'pattern': '3',
+            'action': 'voice'
+        };
+        $.ajax({
+            url: "{{ url_for('index') }}",
+            type: "get",
+            data: data,
+            success: function (data) {
+            },
+            error: function (e) {
+                alert("Error！");
+            }
+        })
+    }
+    function voice4() {
+        const data = {
+            'pattern': '4',
             'action': 'voice'
         };
         $.ajax({
