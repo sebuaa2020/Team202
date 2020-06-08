@@ -92,10 +92,15 @@ def control_shell(data):
             place = instruct[2]
             os.system("gnome-terminal -e 'bash -c \"rosrun team202 nav " + place + "\"'")
             os.system("exit")
-        elif instruct[1] == 'exit':
+        elif instruct[1] == 'exit': # 退出此模式
             os.system("gnome-terminal -e 'bash -c \"rosnode kill rviz\"'")
             os.system("exit")
             os.system("exit")
+    elif instruct[0] == '4': # 抓取模式
+        if instruct[1] == 'mode': # 进入该模式
+            os.system("gnome-terminal -e 'bash -c \"roslaunch team202 obj_recog.launch\"'")
+        elif instruct[1] == 'exit': # 退出此模式
+            os.system("gnome-terminal -e 'bash -c \"rosnode kill rviz\"'")
 
 
  
