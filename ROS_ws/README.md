@@ -2,7 +2,7 @@
 
 ### 安装方法
 
-在本地新建一个文件夹（本说明用demo2_ws举例），在demo2_ws中再建一个src文件夹，将wpr_simulation，wpb_home和team202文件夹复制到其中，然后配置设备访问权限：
+在本地新建一个文件夹（本说明以demo2_ws为例），在demo2_ws中再建一个src文件夹，将wpr_simulation，wpb_home和team202文件夹复制到其中，然后配置设备访问权限：
 
 ```
 roscd wpb_home_bringup
@@ -115,7 +115,7 @@ roslaunch team202 navigation.launch
 rosrun team202 nav 1
 ```
 
-其中，1为用户自定义的目标航点的名称。
+其中，1为用户自定义的目标航点的名称，使用时请按实际情况进行修改。
 
 ### 使用仿真环境中的目标检测
 
