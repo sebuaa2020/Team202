@@ -268,3 +268,11 @@ add_dependencies(nav ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGE
 target_link_libraries(nav
   ${catkin_LIBRARIES}
 )
+
+add_executable(wp_manager
+  src/wp_manager.cpp
+)
+add_dependencies(wp_manager ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wp_manager
+  ${catkin_LIBRARIES}
+)
